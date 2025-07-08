@@ -1,0 +1,102 @@
+{# tasks.html #}
+{% extends 'base.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<div class="tasks-container">
+    <h2>Your Tasks</h2>
+
+    <div class="add-task">
+        <form method="POST" action="{{ url_for('tasks.add_task') }}">
+            <input type="text" name="title" placeholder="Add a new task" required>
+            <button type="submit" class="btn">Add Task</button>
+        </form>
+    </div>
+
+    {% if tasks %}
+        <p class="task-count">You have {{ tasks|length }} task(s).</p>
+        <form method="POST" action="{{ url_for('tasks.clear_tasks') }}">
+            <button type="submit" class="delete-all">Delete All Tasks</button>
+        </form>
+    {% else %}
+        <p class="no-tasks">No tasks available. Add a new task!</p>
+    {% endif %}
+
+    {% if tasks %}
+    <table class="tasks-table" id="task-section">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                <td>{{ loop.index }}</td>
+
+                <!-- Task Title: normal view + edit input (hidden by default) -->
+                <td>
+                    <span class="task-title" id="title-display-{{ task.id }}">{{ task.title }}</span>
+                    <form id="edit-form-{{ task.id }}" action="{{ url_for('tasks.edit_task', task_id=task.id) }}" method="POST" style="display: none;" class="edit-form-inline">
+                    <input type="text" name="title" value="{{ task.title }}" required>
+                    <button type="submit" class="edit-task">Save</button>
+                    </form>
+                </td>
+
+                <!-- Status Badge -->
+                <td><span class="badge {{ task.status|lower }}">{{ task.status }}</span></td>
+
+                <!-- Actions -->
+                <td class="actions">
+                    <form action="{{ url_for('tasks.toggle_status', task_id=task.id) }}" method="POST">
+                    <button type="submit" class="toggle-status">
+                        {% if task.status == 'pending' %}
+                        Working
+                        {% elif task.status == 'working' %}
+                        Done
+                        {% else %}
+                        Completed
+                        {% endif %}
+                    </button>
+                    </form>
+
+                    <form action="{{ url_for('tasks.delete_task', task_id=task.id) }}" method="POST">
+                    <button type="submit" class="delete-task">Delete</button>
+                    </form>
+
+                    <!-- Edit trigger button -->
+                    <button type="button" class="edit-task" data-task-id="{{ task.id }}">Edit</button>
+                </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+    </table>
+    {% endif %}
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.edit-task[data-task-id]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var taskId = btn.getAttribute('data-task-id');
+            var display = document.getElementById('title-display-' + taskId);
+            var form = document.getElementById('edit-form-' + taskId);
+            if (display && form) {
+                if (form.style.display === 'none' || form.style.display === '') {
+                    display.style.display = 'none';
+                    form.style.display = 'inline';
+                } else {
+                    display.style.display = '';
+                    form.style.display = 'none';
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,299 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full height layout with flex */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+/* Ensure main content fills height */
+main.container {
+    flex: 1;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Header */
+header {
+    background-color: #40acd3;
+    color: white;
+    padding: 20px 0;
+}
+
+header h1 {
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+    list-style: none;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Flash Messages */
+.flashes {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.flash {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.flash.danger {
+    background-color: #f2dede;
+    color: #a94442;
+}
+.flash.info {
+    background-color: #d9edf7;
+    color: #31708f;
+}
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.flash.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #7a76ff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #5a9afa;
+}
+
+.delete-all {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    width: 25%;
+}
+
+.delete-all:hover {
+    background-color: #e63946;
+}
+
+/* Auth Pages */
+.login-box, .register-box {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+.login-box h2,
+.register-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tasks Page */
+.tasks-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.add-task {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.add-task input[type="text"] {
+    flex: 1;
+}
+
+.task-count, .no-tasks {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* Task Table */
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: auto;
+}
+
+.tasks-table th,
+.tasks-table td {
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.tasks-table th {
+    background-color: #f2f2f2;
+    font-size: 0.95rem;
+}
+
+/* Action Buttons */
+.tasks-table td .btn,
+.toggle-status,
+.delete-task {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    height: auto;
+    width: auto;
+    border-radius: 6px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-status {
+    background-color: #40acd3;
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.toggle-status:hover {
+    background-color: #5a9afa;
+    cursor: pointer;
+}
+
+.delete-task {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.delete-task:hover {
+    background-color: #e63946;
+    cursor: pointer;
+}
+
+/* Task Status Badges */
+.badge {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.badge.pending {
+    background-color: #ffc107;
+    color: #212529;
+}
+.badge.working {
+    background-color: #fd7e14;
+    color: white;
+}
+.badge.done {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+}
+
+.edit-task {
+    background-color: #0783ff;
+    color: #efefef;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    height: auto;
+}
+
+.edit-task:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
