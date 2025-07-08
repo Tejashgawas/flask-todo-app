@@ -2,6 +2,10 @@
 
 A simple multi-user To-Do web application built with Flask and SQLAlchemy. Users can register, log in, and manage their personal task list.
 
+## 📸 UI Preview
+
+![App Screenshot](./Screenshot%202025-07-08%20202752.png)
+
 ---
 
 # 🚀 Features
